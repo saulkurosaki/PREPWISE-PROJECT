@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
 });
 
-const AuthForm = ({ type }: { type: string }) => {
+const AuthForm = ({ type }: { type: FormType }) => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,6 +37,8 @@ const AuthForm = ({ type }: { type: string }) => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  const isSignIn = type === "sign-in";
 
   return (
     <div className="card-border lg:min-w-[566px]">
@@ -52,25 +55,24 @@ const AuthForm = ({ type }: { type: string }) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6 mt-4 form"
           >
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="shadcn" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">Submit</Button>
+            {!isSignIn && <p>Name</p>}
+            <p>Email</p>
+            <p>Password</p>
+            <Button className="btn" type="submit">
+              {isSignIn ? "Sign In" : "Create an Account"}
+            </Button>
           </form>
         </Form>
+
+        <p className="text-center">
+          {isSignIn ? "No account yet?" : "Have and account already?"}
+          <Link
+            href={!isSignIn ? "/sign-in" : "/sign-up"}
+            className="font-bold text-user-primary ml-1"
+          >
+            {!isSignIn ? "Sign In" : "Sign Up"}
+          </Link>
+        </p>
       </div>
     </div>
   );
