@@ -69,13 +69,13 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 placeholder="Your Name"
               />
             )}
-            {/* <FormField
+            <FormField
               control={form.control}
               name="email"
               label="Email"
               placeholder="Your email address"
               type="email"
-            /> */}
+            />
             {/* <FormField
               control={form.control}
               name="password"
