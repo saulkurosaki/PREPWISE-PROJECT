@@ -1,3 +1,4 @@
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import {
   FormItem,
   FormLabel,
@@ -7,13 +8,27 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 
-const FormField = () => (
-  <FormField
-    control={form.control}
-    name="username"
+interface FormFieldProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+  placeholder?: string;
+  type?: "text" | "password" | "email" | "file";
+}
+
+const FormField = ({
+  control,
+  name,
+  placeholder,
+  label,
+  type = "text",
+}: FormFieldProps<T>) => (
+  <Controller
+    name={name}
+    control={control}
     render={({ field }) => (
       <FormItem>
-        <FormLabel>Username</FormLabel>
+        <FormLabel className="">Username</FormLabel>
         <FormControl>
           <Input placeholder="shadcn" {...field} />
         </FormControl>
