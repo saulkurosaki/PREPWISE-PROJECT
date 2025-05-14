@@ -1,4 +1,6 @@
+import { getRandomInterviewCover } from "@/utils";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 const InterviewCard = ({
   interviewId,
@@ -21,6 +23,14 @@ const InterviewCard = ({
           <div className="absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg bg-light-600">
             <p className="badge-text">{normalizedType}</p>
           </div>
+
+          <Image
+            src={getRandomInterviewCover()}
+            alt="cover"
+            width={90}
+            height={90}
+            className="rounded-full object-fit size-[90px]"
+          />
         </div>
       </div>
     </div>
