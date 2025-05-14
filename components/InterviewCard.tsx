@@ -31,6 +31,8 @@ const InterviewCard = ({
             height={90}
             className="rounded-full object-fit size-[90px]"
           />
+
+          <h3 className="mt-5 capitalize">{role} Interview</h3>
         </div>
       </div>
     </div>
