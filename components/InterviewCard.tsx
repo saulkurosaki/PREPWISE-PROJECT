@@ -1,6 +1,8 @@
 import { getRandomInterviewCover } from "@/utils";
 import dayjs from "dayjs";
 import Image from "next/image";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const InterviewCard = ({
   interviewId,
@@ -50,6 +52,27 @@ const InterviewCard = ({
               <p className="">{feedback?.totalScore || "---"}/100</p>
             </div>
           </div>
+
+          <p className="line-clamp-2 mt-5">
+            {feedback?.finalAssessment ||
+              "You haven't taken this interview yet. Take it now to improve your skills"}
+          </p>
+        </div>
+
+        <div className="flex flex-row justify-between">
+          <p>Tech Icons</p>
+
+          <Button className="btn-primary">
+            <Link
+              href={
+                feedback
+                  ? `/interview/${interviewId}/feedback`
+                  : `/interview/${interviewId}`
+              }
+            >
+              {feedback ? "Check Feedback" : "View Interview"}
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
