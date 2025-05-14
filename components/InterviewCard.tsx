@@ -42,9 +42,12 @@ const InterviewCard = ({
                 width={22}
                 height={22}
               />
-              <p className="">
-                {formattedDate}
-              </p>
+              <p className="">{formattedDate}</p>
+            </div>
+
+            <div className="flex flex-row gap-2">
+              <Image src="/star.svg" alt="star" width={22} height={22} />
+              <p className="">{feedback?.totalScore || "---"}/100</p>
             </div>
           </div>
         </div>
