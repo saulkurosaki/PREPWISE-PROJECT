@@ -11,6 +11,16 @@ enum CallStatus {
 const Agent = ({ userName, userId, type }: AgentProps) => {
   const callStatus = CallStatus.FINISHED;
   const isSpeaking = true;
+  const messages = [
+    "Hello, how are you?",
+    "I'm fine, thank you!",
+    "What is your name?",
+    "My name is John Doe.",
+    "What is your favorite color?",
+    "My favorite color is blue.",
+    "What is your favorite food?",
+  ];
+  const lastMessage = messages[messages.length - 1];
 
   return (
     <>
@@ -42,6 +52,16 @@ const Agent = ({ userName, userId, type }: AgentProps) => {
           </div>
         </div>
       </div>
+
+      {messages.length > 0 && (
+        <div className="transcript-border">
+          <div className="transcript">
+            <p key={lastMessage} className={cn("transition-opacity duration-500 opacity-0", "animate-fadeIn opacity-100")}>
+              {lastMessage}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="w-full flex justify-center">
         {callStatus !== "ACTIVE" ? (
